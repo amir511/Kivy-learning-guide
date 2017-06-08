@@ -1,52 +1,5 @@
-# Kivy Summary and notes
-
-<span style=color:blue> 
-
-## ***How a kivy program works***
-</span>
-
--------------
-
-## imports
-
-```python
-    import kivy
-    kivy.require('1.10.0')  # replace with your current kivy version !
-    from kivy.app import App
-    from kivy.uix.label import Label
-```
-## Concept
-* Subclass the `App` class.
-* Implement (override) its `build()` method.
-* The `build()` method will return a `Widget` instance.
-* This instance is the root of your **widget** tree.
-* Then **instantiate** an object from this class.
-* And finally call its `run()` method.
-<span style=color:green>**That's it!** </span>
-
-```python
-import kivy
-kivy.require('1.10.0')
-from kivy.app import App
-from kivy.uix.label import Label
-
-class Amir_App(App):
-    def build(self):
-        return Label(text='Hello World')
-mero = Amir_App()
-mero.run()
-```
-
-## Notes
-
-* A kivy application must inheret from `App` class.
-* The `uix` kivy module is the one that contains user interface elements, i.e. widgets and layouts.
-* In the `build` function, we should return the ***Root widget***.
-* you can add `self.title` in the `build` method to add a title to the application windows.
-
-## Passing a prepared Widget to the `app` class
-
-```python
+import os
+os.environ["KIVY_NO_CONSOLELOG"]= "1"
 import kivy
 kivy.require('1.10.0')
 from kivy.app import App
@@ -73,15 +26,3 @@ class Amir_App(App):
 
 mero = Amir_App()
 mero.run()  # Can be done like this: Amir_App().run(): instantiation on the fly and calling run method immediately
-```
-
-## Controling the environment
-```python
-import os
-os.environ["KIVY_NO_CONSOLELOG"]= "1"   #This will prevent printing logs to the console
-import kivy     # the previous line should be before importing kivy
-```
-## Config file
-Locastion:  `C:\Users\Home_Folder\.kivy\config.ini`
-
-
