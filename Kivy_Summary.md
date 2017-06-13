@@ -1,13 +1,83 @@
 # Kivy Summary and notes
 
-<span style=color:blue> 
+## Important Packages Overview
 
-## ***How a kivy program works***
-</span>
+**Core Package**
 
--------------
+<!--TODO: add sample import usage-->
+The code in the core package provides commonly used features, such as:
+* Clock
+You can use the clock to schedule timer events. Both one-shot timers and periodic
+timers are supported
+* Cache
+If you need to cache something that you use often, you can use our class for that
+instead of writing your own.
+* Gesture Detection
+We ship a simple gesture recognizer that you can use to detect various kinds of
+strokes, such as circles or rectangles. You can train it to detect your own strokes.
+* Kivy Language
+The kivy language is used to easily and efficiently describe user interfaces.
+* Properties
+These are not the normal properties that you may know from python. They are
+our own property classes that link your widget code with the user interface
+description.
 
-## imports
+**UIX (Widgets & Layouts)**
+
+The UIX module contains commonly used widgets and layouts that you can
+reuse to quickly create a user interface.
+
+* Widgets
+
+Widgets are user interface elements that you add to your program to provide
+some kind of functionality. They may or may not be visible. Examples
+would be a file browser, buttons, sliders, lists and so on. Widgets receive
+MotionEvents.
+
+*Sample usage* 
+
+`from kivy.uix.label import Label` or `from kivy.uix.button import Button`
+
+* Layouts
+
+You use layouts to arrange widgets. It is of course possible to calculate your
+widgets’ positions yourself, but often it is more convenient to use one of our
+ready made layouts. Examples would be Grid Layouts or Box Layouts. You
+can also nest layouts.
+
+*Sample usage* 
+
+`from kivy.uix.gridlayout import Gridlayout` or `from kivy.uix import Button`
+
+
+**Input Events ( Touches )**
+<!--TODO: add sample import usage-->
+
+Kivy abstracts different input types and sources such as touches, mice, TUIO or similar.
+What all of these input types have in common is that you can associate a 2D onscreen-position
+with any individual input event.
+All of these input types are represented by instances of the Touch() class. A touch instance, or
+object, can be in one of three states. When a touch enters one of these states, your program is
+informed that the event occurred. The three states a touch can be in are:
+
+* Down
+
+A touch is down only once, at the very moment where it first appears.
+* Move
+
+A touch can be in this state for a potentially unlimited time. A touch does not have to be in this
+state during its lifetime. A ‘Move’ happens whenever the 2D position of a touch changes.
+* Up
+
+A touch goes up at most once, or never. In practice you will almost always receive an up event
+because nobody is going to hold a finger on the screen for all eternity, but it is not guaranteed.
+If you know the input sources your users will be using, you will know whether or not you can
+rely on this state being entered
+
+
+**How a kivy Application works**
+
+*imports*
 
 ```python
     import kivy
@@ -15,7 +85,7 @@
     from kivy.app import App
     from kivy.uix.label import Label
 ```
-## Concept
+*Concept*
 * Subclass the `App` class.
 * Implement (override) its `build()` method.
 * The `build()` method will return a `Widget` instance.
@@ -23,6 +93,8 @@
 * Then **instantiate** an object from this class.
 * And finally call its `run()` method.
 <span style=color:green>**That's it!** </span>
+
+*Example Application*
 
 ```python
 import kivy
@@ -36,15 +108,25 @@ class Amir_App(App):
 mero = Amir_App()
 mero.run()
 ```
+*The Application life cycle*
+Methods of the `App` class are fired in the following orders:
+1. `run()`
+2. `build()`
+3. `on_start()`
+4. Normal functioning of the application
+5. Whenever something pauses the app the`on_stop()` and the `on_pause()` are fired, the `on_pause()` method either returns `True` or `False`
+6. if `False` **Python** stops and application terminates
+7. if `True`, the `on_resume()` is fired and app returns to step no. 4
 
-## Notes
+
+*Notes*
 
 * A kivy application must inheret from `App` class.
 * The `uix` kivy module is the one that contains user interface elements, i.e. widgets and layouts.
 * In the `build` function, we should return the ***Root widget***.
 * you can add `self.title` in the `build` method to add a title to the application windows.
 
-## Passing a prepared Widget to the `app` class
+*Passing a prepared Widget to the `app` class*
 
 ```python
 import kivy
@@ -82,6 +164,6 @@ os.environ["KIVY_NO_CONSOLELOG"]= "1"   #This will prevent printing logs to the 
 import kivy     # the previous line should be before importing kivy
 ```
 ## Config file
-Locastion:  `C:\Users\Home_Folder\.kivy\config.ini`
+Location:  `C:\Users\Home_Folder\.kivy\config.ini`
 
 
