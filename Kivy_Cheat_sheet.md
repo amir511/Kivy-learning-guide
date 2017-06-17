@@ -91,6 +91,8 @@ from kivy.uix.scatterlayout import ScatterLayout
 
 from kivy.uix.stacklayout import StackLayout
 
+> Tip: in any python file, make an import to one of the above layouts, lets' say AnchorLayout, Then in a new line type: `AnchorLayout.` then using the code completion feature in your text editor\IDE, view the available attributes in this class together with the description (documentation) available for it, the attribute name in any class is the same name that can be used in the `.kv` file, with this method you can understand a lot about every class in the kivy framework, also play around with the methods (functions) available in this class. This trick is one of the main methods that was used to make this cheat sheet.
+
 ### GridLayout
 
 * Python:
