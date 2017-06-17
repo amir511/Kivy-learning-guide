@@ -44,7 +44,7 @@ class TypicalScreen('''SomeLayout'''):
 
 class TypicalApp(App):
     def build(self):
-        return MyScreen()
+        return TypicalScreen()
 
 if __name__ == '__main__':
     MyApp().run()
