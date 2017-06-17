@@ -149,7 +149,7 @@ kivy.uix.bubble
 
 kivy.uix.dropdown
 
-kivy.uix.
+kivy.uix.filechooser
 
 kivy.uix.popup
 
