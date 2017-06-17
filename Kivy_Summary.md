@@ -23,8 +23,7 @@
 The code in the core package provides commonly used features, such as:
 * Clock
 
-    You can use the clock to schedule timer events. Both one-shot timers and periodic
-timers are supported
+    You can use the clock to schedule timer events. Both one-shot timers and periodic timers are supported
 * Cache
 
     If you need to cache something that you use often, you can use our class for that instead of writing your own.
@@ -89,15 +88,8 @@ informed that the event occurred. The three states a touch can be in are:
 
 **How a kivy Application works**
 
-*imports*
-
-```python
-    import kivy
-    kivy.require('1.10.0')  # replace with your current kivy version !
-    from kivy.app import App
-    from kivy.uix.label import Label
-```
 *Concept*
+* Import the required kivy modules in the python file
 * Subclass the `App` class.
 * Implement (override) its `build()` method.
 * The `build()` method will return a `Widget` instance.
@@ -138,15 +130,16 @@ Methods of the `App` class are fired in the following orders:
 * In the `build` function, we should return the ***Root widget***.
 * you can add `self.title` in the `build` method to add a title to the application windows.
 
-*Let's look at another application that will prepare a widget first then pass it to `app` class*
+*Let's now look at another application that will prepare a widget first then pass it to `app` class*
 
-Read carefully the comments in the code to understand the function of every line
+>Tip: Read carefully the comments in the code to understand the function of every line
+
 ```python
 import kivy
-kivy.require('1.10.0')
-from kivy.app import App
+kivy.require('1.10.0')  # Replace with your kivy version if needed
+from kivy.app import App    #This is always required, your app will have to be a subclass of the App class
 from kivy.uix.gridlayout import GridLayout  # The Grid Layout will be the container of the prepared widget
-from kivy.uix.label import Label
+from kivy.uix.label import Label    # The Label widget is a widget that displays text
 from kivy.uix.textinput import TextInput    # This is a user input widget
 
 class Login_screen(GridLayout):     # Now defining the prepared widget
@@ -183,7 +176,7 @@ from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 # Subclassing The layout super class
 class MyScreen(GridLayout):
-    def __init__(self,**kwargs):
+    def __init__(self,**kwargs):v
         super(MyScreen, self).__init__(**kwargs)
 # Now programatically defining layout properties and adding widgets to it
 # This should not be done if you have already defined the properties and added widgets in the .kv file
