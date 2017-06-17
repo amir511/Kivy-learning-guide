@@ -1,10 +1,35 @@
 <MyScreen>:  # Every class name can be represented like this
-    GridLayout:
-        rows: 2
-        cols: 2
-        spacing: 10
-        TextInput:
-            id: text1
-            multiline: False
-        Label:
-            text: 'label widget'
+    rows: 5
+    cols: 3
+    spacing: 10
+    padding: 5
+    TextInput:
+        id: text1
+        text: '1'
+        multiline: False
+        on_text_validate: label.text = 'Text Input 1 Automatically updates me on enter :'+self.text
+    TextInput:
+        id: text2
+        text: '2'
+        multiline: True
+    TextInput:
+        id: text3
+        text: '3'
+        multiline: True
+    Label:
+    Label:
+        id: label
+        text: 'label widget'
+
+    Label:
+        id: interval
+        text: ''
+    Label:
+    Button:
+        id: button
+        text: 'Test me!'
+        string1: 'Text form input 1 : '
+        string2: 'Text form input 2 : '
+        string3: 'Text form input 3 : '
+        n: '\n'
+        on_press: label.text= self.string1+text1.text+self.n+self.string2+text2.text+self.n+self.string3+text3.text

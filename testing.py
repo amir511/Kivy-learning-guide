@@ -2,28 +2,41 @@ import kivy
 kivy.require('1.10.0')
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
-# Subclassing The layout super class
+from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
+from kivy.uix.floatlayout import FloatLayout
+from kivy.config import Config
+from kivy.clock import Clock
+import time
+Config.set('graphics','width',500)
+Config.set('graphics','height',200)
+
 class MyScreen(GridLayout):
+    now = str(time.localtime()[3])+':'+str(time.localtime()[4])+':'+str(time.localtime()[5])
     def __init__(self,**kwargs):
         super(MyScreen, self).__init__(**kwargs)
-# Now programatically defining layout properties and adding widgets to it
-# This should not be done if you have already defined the properties and added widgets in the .kv file
-# It is easier of course to do it using the kv lang, but I am showing it here for reference.
-    ''' 
-        self.rows = 2   
-        self.cols = 2
-        self.padding = 10
-        self.spacing = 10
-        self.add_widget(Label(text='label widget')) # adding a widget on the fly
-        #Adding widget on two steps
-        self.text1 = TextInput(multiline=False)
-        self.add_widget(self.label1)
-    '''
-# Finished the programmatical approach
-# Instantiating the App class to make our application
+        self.repeat_this(1)
+    
+    def repeat_this(self,interval):
+        Clock.schedule_interval(self.print_now,interval)
+    
+    def print_now(self,dt):
+        self.update_now()
+        self.ids.interval.text = self.now
+
+    def update_now(self):   
+        now = str(time.localtime()[3])+':'+str(time.localtime()[4])+':'+str(time.localtime()[5])
+        self.now = now
+
 class MyApp(App):   # this class name should always be like this: SomenameApp
     def build(self):
         return MyScreen()
 
+# class callback(CyClockBase):
+    
+#     def __init__(self):
+#         now = str(time.localtime()[3])+':'+str(time.localtime()[4])+':'+str(time.localtime()[5])
+#         print(now)
 if __name__ == '__main__':
     MyApp().run() #Instantiating the app on the fly and calling its run method
