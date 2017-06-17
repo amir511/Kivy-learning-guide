@@ -29,7 +29,25 @@ Then the import the widget(s) that will be used:
 from kivy.uix.textinput import TextInput
 
 ```
+Controling the initial window size of the kivy app:
 
+*Before the window creation:*
+```python
+
+from kivy.config import Config
+Config.set('graphics', 'width', '200')
+Config.set('graphics', 'height', '200')     # put your desired values instead of 200
+
+```
+
+*Dynamically After The window creation:*
+
+```python
+
+from kivy.core.window import Window
+Window.size = (300, 100)
+
+```
 ## Typical Python `main.py` file:
 
 ```python
@@ -55,23 +73,30 @@ if __name__ == '__main__':
 
 ```yaml
 
-<TypicalScreen>:
-    SomeLayout:
+<TypicalScreen>:    #since this is already a subclass of a layout class, we can start adding the layout property below
+    someproperty:
+    someproperty:
+    someproperty:
+    someproperty:
+
+    SomeAnotherWidget:  #This is a direct child of the root layout
+        someproperty:
+        someproperty:
         someproperty:
         someproperty:
         someproperty:
 
-        SomeWidget:
+
+    SomeLayout: # this is another layout that will be included in the first root layout, usually this is not needed
+        someproperty:
+        someproperty:
+        someproperty:
+
+        SomeWidget:     # this is a child of the second layout
             someproperty:
             someproperty:
             someproperty:
 
-        SomeAnotherWidget:
-            someproperty:
-            someproperty:
-            someproperty:
-            someproperty:
-            someproperty:
 
 ```
 
