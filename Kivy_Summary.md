@@ -204,15 +204,14 @@ if __name__ == '__main__':
 *file name should be: `my.kv`; i.e. whatever you call your App class, you will strip the `App` word from it and name your kivy file with the first word in lowercase letters*
 ```yaml
 <MyScreen>:  # Every class name can be represented like this
-    GridLayout:
-        rows: 2
-        cols: 2
-        spacing: 10
-        TextInput:
-            id: text1
-            multiline: False
-        Label:
-            text: 'label widget'
+    rows: 2
+    cols: 2
+    spacing: 10
+    TextInput:
+        id: text1
+        multiline: False
+    Label:
+        text: 'label widget'
 ```
 ***Important Keywords***
 
@@ -230,11 +229,10 @@ Every class (either a widget or layout) has its own methods that can be overidde
 
 ```yaml
 <MyScreen>:
-    GridLayout:
-        TextInput:
-                id: text1
-                multiline: False
-                on_text_validate: root.do_come_action()
+    TextInput:
+            id: text1
+            multiline: False
+            on_text_validate: root.do_come_action()
 ```
 The `on_text_validate()` validate method is already defined in the `TextInput` class and no need to define it, it is only called from the kivy file
 
@@ -252,7 +250,21 @@ If you want the widget itself to trigger the action, use: `self.do_some_action` 
 
 And if you want the app itself to trigger the action, use: `app.do_some_action`, and define the method in the `App` subclass.
 
+## Scheduling
 
+**What is Scheduling?**
+
+If you have experience in Android development using Java, you already know that the UI is being executed in a memory thread calld the *Main Thread*, while other actions that are triggered in the background (e.g. Networking) are executed in another thread(s) called the *Worker Thread(s)*
+
+Similarly, *Kivy* has a *Main loop* which resembles the Main Thread in Java, while other background jobs should be *Scheduled* to be triggered independently from the Main Loop
+
+**Why Scheduling?**
+
+If you request a web page to be loaded or downloaded while you are in the *Main Loop* (or in the *Main Thread*), The UI will hang or stutter or at least wait until the requested page be loaded then continue to function.
+
+Scheduling is crucial to avoid UI hanging or bad user experience
+
+<!--Start Adding how to make a scheule based on the testing.py file-->
 
 ## Controling the environment
 ```python
