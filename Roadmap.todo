@@ -1,0 +1,14 @@
+Todo Items:
+    ☐ kivy Cheat sheet @on_progress
+    ☐ kivy snippets @on_progress
+        ☐ Navigation drawer
+        ✔ Web view @done (6/18/2017, 9:16:48 AM)
+    ☐ kivy learning guide @on_progress
+    ☐ kivy UI wizard
+    ☐ or Kivy UI Boilerplate
+    ☐ Kivy language support for VS code + snippets
+    ☐ Update Read me to reflect new changes
+Need to consider covering:
+    ☐ Flat Kivy: A repo at https://github.com/Kovak/FlatKivy/tree/master/flat_kivy that implements material design concepts in kivy framework
+    ☐ Kivy UI Designer
+    
