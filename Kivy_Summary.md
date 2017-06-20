@@ -272,7 +272,7 @@ There are many ways to implement scheduling in kivy, but the common ways are:
 #....
 from kivy.clock import Clock
 # Method 1:
-event = Clock.schedule_interval(function, interval)   # This method will trigger the function every some interval
+event = Clock.schedule_interval(function, interval)   # This method will trigger the function every some interval (seconds)
 
 # But the function passed here must have a patameter of delta time as an argument in its signature
 
@@ -281,15 +281,15 @@ def function(dt):
 # the dt parameter is not needed to be used in the function
 
 # Method 2:
-event = Clock.schedule_once(function, delay)    # This will trigger function once only after delay seconds
+event = Clock.schedule_once(function, delay)    # This will trigger function once only after some delay in seconds
 
 # Again this function should have 'dt' as an argument
-# Off course this function is part of a class, it should look like this:
+# Off course if this function is part of a class, it should look like this:
 
 def function(self,dt):
     # some code
 
-# If at some condition or at some point, you need to disable the scheduled event, i.e. unschedule it, use:
+# If at some condition or at some point in your code, you need to disable the scheduled event, i.e. unschedule it, use:
 event.cancel()
 
 # Or:
