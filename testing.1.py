@@ -20,7 +20,7 @@ class Timer(EventDispatcher):
         super(Timer, self).__init__(**kwargs)
         self.now = str(time.localtime()[3])+':'+str(time.localtime()[4])+':'+str(time.localtime()[5])
 
-
+fgdfgdg
 class MyScreen(GridLayout):
     timer = Timer()
     def __init__(self,**kwargs):
