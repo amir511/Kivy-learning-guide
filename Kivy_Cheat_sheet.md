@@ -107,6 +107,8 @@ Clock.unschedule(event)
 
 ```yaml
 
+#:kivy `1.10`   # kivy header line to declare the kivy version used
+
 <TypicalScreen>:    #since this is already a subclass of a layout class, we can start adding the layout property below
     someproperty:
     someproperty:
@@ -234,3 +236,14 @@ api-kivy.uix.stencilview
 
 api-kivy.uix.screenmanager
 
+## Controling the environment
+
+```python
+import os
+os.environ["KIVY_NO_CONSOLELOG"]= "1"   #This will prevent printing logs to the console
+import kivy     # the previous line should be before importing kivy
+```
+
+## Config file
+
+Location:  `C:\Users\Home_Folder\.kivy\config.ini`

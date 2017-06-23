@@ -22,7 +22,7 @@ class MyScreen(GridLayout):
         self.trigger()
         Clock.schedule_once(self.fill_label,12)
         Clock.schedule_once(self.clear_label,14)
-                        
+
     def repeat_this(self,interval):
         Clock.schedule_interval(self.print_now,interval)
     

@@ -298,14 +298,3 @@ Clock.unschedule(event)
 # Or in the signature of the function itself, return False at the desired cancelation condition
 
 ```
-
-## Controling the environment
-```python
-import os
-os.environ["KIVY_NO_CONSOLELOG"]= "1"   #This will prevent printing logs to the console
-import kivy     # the previous line should be before importing kivy
-```
-## Config file
-Location:  `C:\Users\Home_Folder\.kivy\config.ini`
-
-
