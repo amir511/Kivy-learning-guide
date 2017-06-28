@@ -12,6 +12,8 @@
 
 - Kivy Official Documentation
 
+- Creating Apps in Kivy, Dusty Phillips
+
 </small>
 
 
@@ -127,6 +129,7 @@ Methods of the `App` class are fired in the following orders:
 
 * A kivy application must inheret from `App` class.
 * The `uix` kivy module is the one that contains user interface elements, i.e. widgets and layouts.
+* All user interface elements are called widgets, i.e. **Layouts are a form of widgets**
 * In the `build` function, we should return the ***Root widget***.
 * you can add `self.title` in the `build` method to add a title to the application windows.
 
@@ -163,6 +166,11 @@ mykivy = MyApp()
 mykivy.run()  # Can be done like this: MyApp().run(): instantiation on the fly and calling run method immediately
 ```
 ## Kivy Language
+
+Up till now, we have been using the kivy from inside python, which can be sufficient and does the required job
+
+But kivy has an interesting way to do it in a simpler way, using a markup language called `kivy language` or `kvlang`
+
 *Now lets look at an example which utilizes the ***Kivy*** language*
 
 ***Python Code***
@@ -195,27 +203,29 @@ class MyScreen(GridLayout):
 # Instantiating the App class to make our application
 class MyApp(App):   # this class name should always be like this: SomenameApp
     def build(self):
-        return MyScreen()
+        return MyScreen()   #instantiating MyScreen and calling its constructor (__init__) method
 
 if __name__ == '__main__':
     MyApp().run() #Instantiating the app on the fly and calling its run method
 ```
 ***Kv lang***
-*file name should be: `my.kv`; i.e. whatever you call your App class, you will strip the `App` word from it and name your kivy file with the first word in lowercase letters*
+
+*file name should be: `my.kv` ; i.e. whatever you call your App class, you will strip the `App` word from it and name your kivy file with the first word in lowercase letters, also make sure that it will be in the same directory with the `main.py`*
+
 ```yaml
-<MyScreen>:  # Every class name can be represented like this
+<MyScreen>:  # Every class should be represented between tow angular `<>` brackets
     rows: 2
     cols: 2
     spacing: 10
-    TextInput:
+    TextInput:  #  This is another widget that is a child of the root widget MyScreen
         id: text1
         multiline: False
-    Label:
+    Label:  #  This is another widget that is a child of the root widget MyScreen
         text: 'label widget'
 ```
 ***Important Keywords***
 
-There are three keywords specific to Kv language:
+There are three important keywords specific to Kv language:
 
 * `app`: always refers to the instance of your application.
 * `root`: refers to the base widget/template in the current rule
