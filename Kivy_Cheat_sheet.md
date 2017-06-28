@@ -1,4 +1,16 @@
 # Kivy Framework Cheat Sheet
+If you are writing in Python 3
+
+On the top of the python `main.py` file put:
+
+```python
+
+from __future__ import (absolute_import, division, print_function, unicode_literals)
+from builtins import *
+
+```
+
+These two lines are not necessary but recommended, they will ensure that your code is Python 2 compatible, some packagers like Buildozer works better with Python 2
 
 In all applications the following imports should be done:
 
@@ -7,26 +19,6 @@ In all applications the following imports should be done:
 import kivy
 kivy.require('1.10.0')  # replace with your current kivy version !
 from kivy.app import App
-
-```
-
-Then import the layout(s) that needs to be used:
-
-*e.g.:*
-
-```python
-
-from kivy.uix.gridlayout import GridLayout
-
-```
-
-Then the import the widget(s) that will be used:
-
-*e.g.:*
-
-```python
-
-from kivy.uix.textinput import TextInput
 
 ```
 Controling the initial window size of the kivy app:
@@ -55,67 +47,70 @@ Window.size = (300, 100)
 import kivy
 kivy.require('1.10.0')
 from kivy.app import App
-from kivy.uix.'''somelayout''' import '''SomeLayout'''
-
-class TypicalScreen('''SomeLayout'''):
-    def __init__(self,**kwargs):
-        super(TypicalScreen, self).__init__(**kwargs)
 
 class TypicalApp(App):
-    def build(self):
-        return TypicalScreen()
+    pass
 
 if __name__ == '__main__':
     MyApp().run()
 
 ```
-
-## Scheduling events:
-
-```python
-#....
-from kivy.clock import Clock
-# Method 1:
-event = Clock.schedule_interval(function, interval)   # This method will trigger the function every some interval (seconds)
-
-# But the function passed here must have a patameter of delta time as an argument in its signature
-
-def function(dt):
-    # some code
-# the dt parameter is not needed to be used in the function
-
-# Method 2:
-event = Clock.schedule_once(function, delay)    # This will trigger function once only after some delay in seconds
-
-# Again this function should have 'dt' as an argument
-# Off course if this function is part of a class, it should look like this:
-
-def function(self,dt):
-    # some code
-
-# If at some condition or at some point in your code, you need to disable the scheduled event, i.e. unschedule it, use:
-event.cancel()
-
-# Or:
-Clock.unschedule(event)
-
-# Or in the signature of the function itself, return False at the desired cancelation condition
-
-```
-
 ## A simple typical Kivy `typical.kv` file:
 
 ```yaml
 
 #:kivy `1.10`   # kivy header line to declare the kivy version used
 
-TypicalScreen:    # The root widget
+TypicalScreen:    # The root layout(widget)
     someproperty:
     someproperty:
     someproperty:
     someproperty:
 
-    SomeAnotherWidget:  #This is a direct child of the root layout
+    SomeAnotherWidget:  #This is a direct child of the root layout(widget)
+        someproperty:
+        someproperty:
+        someproperty:
+        someproperty:
+        someproperty:
+
+
+    SomeLayout: # this is another layout that will be included in the first root layout, usually this is not needed
+        someproperty:
+        someproperty:
+        someproperty:
+
+        SomeWidget:     # this is a child of the second layout
+            someproperty:
+            someproperty:
+            someproperty:
+
+```
+
+## A typical Kivy `typical.kv` file with a custom layout:
+
+```yaml
+
+#:kivy `1.10`   # kivy header line to declare the kivy version used
+
+TypicalScreen:    # The root widget which is a custom widget defined below but only called beacuse of this line, i.e.: TypicalScreen:
+<TypicalScreen@BoxLayout>:
+## Defining our custom widget, The `<` `>` means that this is a class, the `@` means it inherits from the `BoxLayout` layout class, the BoxLayout can be changed to any other layout or widget
+## The above line is equivalent in python to :
+# class TypicalScreen(BoxLayout):
+#   def __init__(self,**kwargs):
+#        super(TypicalScreen, self).__init__(**kwargs)
+## And offcourse this will mean the following change in the App subclass:
+# class MyApp(App):
+#     def build(self):
+#        return MyScreen()
+## Offcourse this will complicate things up, so subclassing the widget in the kivy file as shown here is preferred
+    someproperty:
+    someproperty:
+    someproperty:
+    someproperty:
+
+    SomeAnotherWidget:  #This is a direct child of the root layout(widget)
         someproperty:
         someproperty:
         someproperty:
@@ -135,6 +130,7 @@ TypicalScreen:    # The root widget
 
 
 ```
+
 
 ## Available layouts
 *And their respective import statemnts*
@@ -260,6 +256,39 @@ GridLayout:
     row_default_height: 0   # Default minimum size to use for row, defaults to 0
     col_force_default: False    # If True, ignore the width and size_hint_x of the child and use the default column width, default is False
     row_force_default: False    # If True, ignore the height and size_hint_y of the child and use the default row height, default is False
+
+```
+
+## Scheduling events:
+
+```python
+#....
+from kivy.clock import Clock
+# Method 1:
+event = Clock.schedule_interval(function, interval)   # This method will trigger the function every some interval (seconds)
+
+# But the function passed here must have a patameter of delta time as an argument in its signature
+
+def function(dt):
+    # some code
+# the dt parameter is not needed to be used in the function
+
+# Method 2:
+event = Clock.schedule_once(function, delay)    # This will trigger function once only after some delay in seconds
+
+# Again this function should have 'dt' as an argument
+# Off course if this function is part of a class, it should look like this:
+
+def function(self,dt):
+    # some code
+
+# If at some condition or at some point in your code, you need to disable the scheduled event, i.e. unschedule it, use:
+event.cancel()
+
+# Or:
+Clock.unschedule(event)
+
+# Or in the signature of the function itself, return False at the desired cancelation condition
 
 ```
 
