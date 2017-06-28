@@ -32,7 +32,7 @@ Config.set('graphics', 'height', '200')     # put your desired values instead of
 
 ```
 
-*Dynamically After The window creation:*
+*Or dynamically After The window creation:*
 
 ```python
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
 #:kivy `1.10`   # kivy header line to declare the kivy version used
 
-TypicalScreen:    # The root layout(widget)
+BoxLayout:    # The root layout(widget), can be offcourse any other type of layout
     someproperty:
     someproperty:
     someproperty:
