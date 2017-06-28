@@ -167,7 +167,7 @@ mykivy.run()  # Can be done like this: MyApp().run(): instantiation on the fly a
 
 ***Python Code***
 
-*usually the python file is named `main.py` but this is just a convention and you can use any other name*
+*usually the python file is named `main.py` this is not mandatory but in case of packaging your application for other platforms this is crucial*
 ```python
 # Imports
 import kivy

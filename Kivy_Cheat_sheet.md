@@ -103,7 +103,7 @@ Clock.unschedule(event)
 
 ```
 
-## Typical Kivy `typical.kv` file:
+## A simple typical Kivy `typical.kv` file:
 
 ```yaml
 
