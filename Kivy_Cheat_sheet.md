@@ -109,7 +109,7 @@ Clock.unschedule(event)
 
 #:kivy `1.10`   # kivy header line to declare the kivy version used
 
-<TypicalScreen>:    #since this is already a subclass of a layout class, we can start adding the layout property below
+TypicalScreen:    # The root widget
     someproperty:
     someproperty:
     someproperty:
@@ -137,12 +137,13 @@ Clock.unschedule(event)
 ```
 
 ## Available layouts
-
+*And their respective import statemnts*
+```python
 from kivy.uix.anchorlayout AnchorLayout
 
 from kivy.uix.floatlayout import FloatLayout
 
-GridLayout
+from kivy.uix.gridlayout import GridLayout
 
 from kivy.uix.pagelayout import PageLayout
 
@@ -152,7 +153,89 @@ from kivy.uix.scatterlayout import ScatterLayout
 
 from kivy.uix.stacklayout import StackLayout
 
+```
+
 > Tip: in any python file, make an import to one of the above layouts, lets' say AnchorLayout, Then in a new line type: `AnchorLayout.` then using the code completion feature in your text editor\IDE, view the available attributes in this class together with the description (documentation) available for it, the attribute name in any class is the same name that can be used in the `.kv` file, with this method you can understand a lot about every class in the kivy framework, also play around with the methods (functions) available in this class. This trick is one of the main methods that was used to make this cheat sheet.
+
+<!--TODO: list every layout-->
+
+## Available Classical Widgets
+
+*And their respective import statemnts*
+<!--TODO:Add the class name that should be imported after making sure of the correct import statement-->
+```python
+
+from kivy.uix.label import Label
+
+from kivy.uix.button import Button
+
+from kivy.uix.checkbox
+
+from kivy.uix.image
+
+from kivy.uix.slider
+
+from kivy.uix.progressbar
+
+from kivy.uix.textinput
+
+from kivy.uix.togglebutton
+
+from kivy.uix.switch
+
+from kivy.uix.video
+
+```
+<!--TODO:Add the description of every widget-->
+
+## Available Complex Widgets
+
+*And their respective import statemnts*
+
+```python
+
+from kivy.uix.bubble
+
+from kivy.uix.dropdown
+
+from kivy.uix.filechooser
+
+from kivy.uix.popup
+
+from kivy.uix.spinner
+
+from kivy.uix.listview import ListView
+
+from kivy.uix.tabbedpanel
+
+from kivy.uix.videoplayer
+
+from kivy.uix.vkeyboard
+
+```
+## Behaviours Widgets
+
+*And their respective import statemnts*
+<!--TODO:Add the description of every widget-->
+
+```python
+
+api-kivy.uix.scatter
+
+api-kivy.uix.stencilview
+
+```
+## Screen Manager
+
+*And their respective import statemnts*
+<!--TODO:Add the description of every widget-->
+
+```python
+
+api-kivy.uix.screenmanager
+
+```
+## Widget Examples:
 
 ### GridLayout
 
@@ -179,62 +262,6 @@ GridLayout:
     row_force_default: False    # If True, ignore the height and size_hint_y of the child and use the default row height, default is False
 
 ```
-
-<!--TODO: list every layout-->
-
-## Available Classical Widgets
-
-kivy.uix.label
-
-kivy.uix.button
-
-kivy.uix.checkbox
-
-kivy.uix.image
-
-kivy.uix.slider
-
-kivy.uix.progressbar
-
-kivy.uix.textinput
-
-kivy.uix.togglebutton
-
-kivy.uix.switch
-
-kivy.uix.video
-
-<!--TODO:Add the description of every widget-->
-
-## Available Complex Widgets
-
-kivy.uix.bubble
-
-kivy.uix.dropdown
-
-kivy.uix.filechooser
-
-kivy.uix.popup
-
-kivy.uix.spinner
-
-kivy.uix.listview
-
-kivy.uix.tabbedpanel
-
-kivy.uix.videoplayer
-
-kivy.uix.vkeyboard
-
-## Behaviours Widgets
-
-api-kivy.uix.scatter
-
-api-kivy.uix.stencilview
-
-## Screen Manager
-
-api-kivy.uix.screenmanager
 
 ## Controling the environment
 
