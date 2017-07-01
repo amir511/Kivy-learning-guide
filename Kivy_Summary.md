@@ -167,7 +167,7 @@ mykivy.run()  # Can be done like this: MyApp().run(): instantiation on the fly a
 ```
 ## Kivy Language
 
-Up till now, we have been using the kivy from inside python, which can be sufficient and does the required job
+Up till now, we have been using the kivy framework from inside python, which can be sufficient and does the required job
 
 But kivy has an interesting way to do it in a simpler way, using a markup language called `kivy language` or `kvlang`
 
@@ -210,10 +210,11 @@ if __name__ == '__main__':
 ```
 ***Kv lang***
 
-*file name should be: `my.kv` ; i.e. whatever you call your App class, you will strip the `App` word from it and name your kivy file with the first word in lowercase letters, also make sure that it will be in the same directory with the `main.py`*
+>*File name should be: `my.kv` ; i.e. whatever you call your App class, you will strip the `App` word from it and name your kivy file with the first word in lowercase letters, In that way, kivy will be able to connect the kivy file with the appropriate class in python, also make sure that it will be in the same directory with the `main.py`*
 
 ```yaml
-<MyScreen>:  # Every class should be represented between tow angular `<>` brackets
+<MyScreen>:  # Every custom class should be represented between tow angular `<>` brackets
+# Here MyScreen is a custom class and the root widget in the kivy file at the same time
     rows: 2
     cols: 2
     spacing: 10
@@ -259,6 +260,43 @@ class MyScreen(GridLayout):
 If you want the widget itself to trigger the action, use: `self.do_some_action` in kivy, and define the method in a subclass of `TextInput`
 
 And if you want the app itself to trigger the action, use: `app.do_some_action`, and define the method in the `App` subclass.
+
+## Simplifying things up by using the power of kv lang
+
+It is important to learn first the difficult way, and move then to the easy way.
+So now that we have understood the internals of how a kivy program works, we can safely start using a more simple form that will do the same functionality with less complex code.
+
+Preparing a custom widget and passing it to the subclass of `App` can be done on the fly in the kv lang as follows:
+
+```yaml
+MyScreen: #calling the root widget (preparing it later down here), this replaces the "return MyScreen()" line inside the "build" method of the "MyApp" class
+<MyScreen@GridLayout>:  #this is equivalent to "class MyScreen(GridLayout)" in python
+    rows: 2
+    cols: 2
+    spacing: 10
+    TextInput:
+        id: text1
+        multiline: False
+    Label:
+        text: 'label widget'
+```
+So Since the kivy file have declared almost everything for us, the python code will only look like this:
+
+```python
+import kivy
+kivy.require('1.10.0')
+from kivy.app import App
+# No need to import GridLayout as we did before, the kivy code already took care of that before!
+class MyApp(App):
+    pass
+
+if __name__ == '__main__':
+    MyApp().run()
+
+```
+As you have noticed, This python code is generic, and many changes can be done in the application through changing the kivy code only
+offcourse, in more complex cases, you will need to add more code to the python file.
+Go ahead and try it with many kivy files, just make sure that the kivy file will have the name `my.kv` as long as the `App` subclass has the name of `MyApp` as explained before.
 
 ## Scheduling
 
